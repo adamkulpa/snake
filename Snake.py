@@ -27,7 +27,7 @@ class Snake(object):
     def __init__(self):
         self._direction = Snake.SNAKE_DIR_NONE
         self._length = 3
-        self._part_position = [(0, 0) for i in range(self._length)]
+        self._part_position = [i for i in range(self._length)]
         self._speed = 100
         self._speed_timer = Timer()
         self._speed_timer.start()
@@ -38,8 +38,23 @@ class Snake(object):
             self._part_position[i] = (x - i*self.WIDTH, y)
             
     def set_direction(self, snake_dir):
-        self._direction = snake_dir
-        
+        if self._direction == Snake.SNAKE_DIR_LEFT and \
+            snake_dir == Snake.SNAKE_DIR_RIGHT:
+            return
+        elif self._direction == Snake.SNAKE_DIR_RIGHT and \
+            snake_dir == Snake.SNAKE_DIR_LEFT:
+            return
+        elif self._direction == Snake.SNAKE_DIR_UP and \
+            snake_dir == Snake.SNAKE_DIR_DOWN:
+            return
+        elif self._direction == Snake.SNAKE_DIR_DOWN and \
+            snake_dir == Snake.SNAKE_DIR_UP:
+            return
+        else:
+            self._direction = snake_dir
+            
+        # TODO: repair snake undefined behavior after resume 
+
     def update(self):
         if self._speed_timer.get_ticks() >= self._speed:
             
@@ -71,4 +86,3 @@ class Snake(object):
     def update_parts_position(self):
         for i in range(len(self._part_position) - 1, 0, -1):
             self._part_position[i] = self._part_position[i-1]
-    
