@@ -3,8 +3,10 @@
 '''
 Created on 29 lip 2016
 
-@file: Palette.py
-@brief: This file contain color palette
+@file: Application.py
+@brief: Application contains the main loop,  where all events are processed
+        and dispatched. It also handles the application's initialization
+        and finalization.
 @autor: Adam Kulpa
 '''
 
@@ -59,15 +61,15 @@ class App(object):
         sys.exit()
     
     def on_loop(self):
-        """
+        '''
         Calculations and objects update
-        """
+        '''
         self._snake.update()     
     
     def on_draw(self):
-        """
+        '''
         Draw all objects
-        """
+        '''
         self._display_surf.fill(Colors['BLUE4'])
         
         self._snake.draw(self._display_surf)
@@ -75,7 +77,9 @@ class App(object):
     def on_execute(self):
         self.on_init()
   
-        # main loop
+        '''
+	    Main loop
+	    '''
         while(self._running):
             for event in pygame.event.get():
                 self.on_event(event)

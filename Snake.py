@@ -4,7 +4,8 @@
 Created on 29 lip 2016
 
 @file: Snake.py
-@brief: It's small, well-know game realization called 'Snake'.
+@brief: This class represents description of a snake, including shape
+        and behavior.
 @autor: Adam Kulpa
 '''
 
@@ -26,6 +27,7 @@ class Snake(object):
     
     def __init__(self):
         self._direction = Snake.SNAKE_DIR_NONE
+        self._last_direction = Snake.SNAKE_DIR_NONE
         self._length = 3
         self._part_position = [i for i in range(self._length)]
         self._speed = 100
@@ -50,7 +52,12 @@ class Snake(object):
         elif self._direction == Snake.SNAKE_DIR_DOWN and \
             snake_dir == Snake.SNAKE_DIR_UP:
             return
+        elif self._direction == Snake.SNAKE_DIR_NONE and \
+            snake_dir == Snake.SNAKE_DIR_NONE:
+            self._direction = self._last_direction
+            return
         else:
+            self._last_direction = self._direction
             self._direction = snake_dir
             
         # TODO: repair snake undefined behavior after resume 

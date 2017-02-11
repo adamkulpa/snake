@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+
 '''
 Created on 30 lip 2016
 
 @file: Timer.py
 @brief: This file contain simple wrapper of pygame.timer module with extended 
-        functionality: stop and pause
+        functionality: stop and pause.
 @autor: Adam Kulpa
 '''
 

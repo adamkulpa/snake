@@ -5,7 +5,9 @@
 Created on 29 lip 2016
 
 @file: main.py
-@brief: It's small, well-know game realization called 'Snake'.
+@brief: It's small, well-know game realization called 'Snake'. 
+        The only purpos of Snake is to chase after food blocks
+        to feed and get longer.
 @autor: Adam Kulpa
 '''
 
