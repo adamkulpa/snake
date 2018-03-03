@@ -36,30 +36,30 @@ class Snake(object):
     def set_position(self, x, y):
         self._part_position[0] = (x, y)
         for i in range(len(self._part_position)):
-            self._part_position[i] = (x - i*self.WIDTH, y)
+            self._part_position[i] = (x - i * self.WIDTH, y)
 
     def set_direction(self, snake_dir):
-        if self._direction == Snake.SNAKE_DIR_LEFT and \
-            snake_dir == Snake.SNAKE_DIR_RIGHT:
-            return
-        elif self._direction == Snake.SNAKE_DIR_RIGHT and \
-            snake_dir == Snake.SNAKE_DIR_LEFT:
-            return
-        elif self._direction == Snake.SNAKE_DIR_UP and \
-            snake_dir == Snake.SNAKE_DIR_DOWN:
-            return
-        elif self._direction == Snake.SNAKE_DIR_DOWN and \
-            snake_dir == Snake.SNAKE_DIR_UP:
-            return
-        elif self._direction == Snake.SNAKE_DIR_NONE and \
-            snake_dir == Snake.SNAKE_DIR_NONE:
-            self._direction = self._last_direction
-            return
-        else:
+        transition_possible = True
+
+        if ((self._direction == Snake.SNAKE_DIR_LEFT and
+             snake_dir == Snake.SNAKE_DIR_RIGHT)):
+            transition_possible = False
+
+        if ((self._direction == Snake.SNAKE_DIR_RIGHT and
+             snake_dir == Snake.SNAKE_DIR_LEFT)):
+            transition_possible = False
+
+        if ((self._direction == Snake.SNAKE_DIR_UP and
+             snake_dir == Snake.SNAKE_DIR_DOWN)):
+            transition_possible = False
+
+        if ((self._direction == Snake.SNAKE_DIR_DOWN and
+             snake_dir == Snake.SNAKE_DIR_UP)):
+            transition_possible = False
+
+        if transition_possible:
             self._last_direction = self._direction
             self._direction = snake_dir
-            # TODO: move pause/resume logic from Snake class
-            # TODO: repair snake undefined behavior after resume
 
     def update(self):
         if self._speed_timer.get_ticks() >= self._speed:
