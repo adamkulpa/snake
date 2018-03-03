@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-'''
-Created on 30 lip 2016
+"""
+Created on 30 Jul. 2016
 
 @file: Timer.py
-@brief: This file contain simple wrapper of pygame.timer module with extended 
+@brief: This file contain simple wrapper for pygame.timer module with extended
         functionality: stop and pause.
 @autor: Adam Kulpa
-'''
+"""
 
 
 import pygame
@@ -30,21 +30,21 @@ class Timer:
         self._started = False
         
     def get_ticks(self):
-        if self._started == True:
-            if self._paused == True:
+        if self._started:
+            if self._paused:
                 return self._paused_ticks
             else:
-                return pygame.time.get_ticks() - self._start_ticks;
+                return pygame.time.get_ticks() - self._start_ticks
         else:
             return 0
     
     def pause(self):
-        if self._started == True & self._paused == False:
+        if self._started and not self._paused:
             self._paused = True
-            self._paused_tick = pygame.time.get_ticks() - self._start_ticks
+            self._paused_ticks = pygame.time.get_ticks() - self._start_ticks
     
     def unpause(self):
-        if self._paused == True:
+        if self._paused:
             self._paused = False
             self._start_ticks = pygame.time.get_ticks() - self._paused_ticks
             self._paused_ticks = 0
